@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 0px;
+}
+
+.sidebar {
+	position: fixed;
+	display: block;
+	padding-top: 10px;
+	top: 60px;
+	bottom: 0px;
+	background-color: #F4F5F7;
+}
+
+.content {
+	padding: 10px;
+	position: fixed;
+	display: block;
+	left: 200px;
+	top: 60px;
+	bottom: 0px;
+	background-color: #fff;
+}
+
+.page-header {
+	margin-top: 0px;
+}

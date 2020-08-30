@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="contents">
+		<div class="page-header">
+			<h1>基本料金</h1>
+		</div>
+		<div class="page-content">
+			<div>
+				<a class="btn btn-outline-warning btn-sm" th:href="@{/basic_charge_edit}">変更</a>
+			</div>
+			<table border="1" th:object="${basicCharge}">
+				<thead><tr><th>基本料金</th><td th:text="${basicCharge.commaOf1000()} + 円"></td></tr></thead>
+				<tbody><tr><th>説明</th><td th:text="*{discription}"></td></tr></tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

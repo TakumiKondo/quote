@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"></link>
+  <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/dialog.js}" defer="defer"></script>
+
+  <link th:href="@{/css/home.css}" rel="stylesheet"></link>
+
+  <title>Home</title>
+</head>
+
+<body>
+  <!-- ヘッダーナビゲーション -->
+  <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">見積もりシステム マスタメンテナンス</a>
+      </div>
+      <form method="post" th:action="@{/logout}">
+        <button class="btn btn-link pull-right navbar-brand" type="submit">ログアウト</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- サイドバー -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 sidebar">
+
+        <ul class="list-group">
+          <li class="list-group-item"><a th:href="@{/basic_charge}">基本料金</a></li>
+          <li class="list-group-item"><a th:href="@{/material}">材料費</a></li>
+          <li class="list-group-item"><a th:href="@{/design}">デザイン加工費</a></li>
+          <li class="list-group-item"><a th:href="@{/jewely}">宝飾肥</a></li>
+          <li class="list-group-item"><a th:href="@{/stamp}">刻印加工費</a></li>
+          <li class="list-group-item"><a th:href="@{/option}">オプション</a></li>
+          <li class="list-group-item"><a th:href="@{/benefit}">特典</a></li>
+          <!--
+          <li class="list-group-item" sec:authorize="hasRole('admin')">
+          </li> -->
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- コンテンツ -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="content">
+        <div th:include="__${contents}__"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
