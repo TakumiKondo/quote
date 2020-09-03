@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +18,22 @@ public class BasicChargeDaoImpl implements BasicChargeDao {
 
 	@Override
 	public BasicCharge getOne() throws DataAccessException {
-		String sql = "SELECT * FROM basic_charge bc WHERE deleted_at IS NULL ORDER BY bc.created_at DESC LIMIT 1";
-		Map<String, Object> result = jdbc.queryForMap(sql);
+		String sql = "SELECT * FROM basic_charge WHERE deleted_at IS NULL";
+		Map<String, Object> result = null;
 		BasicCharge basicCharge = new BasicCharge();
-		basicCharge.setPrice(Integer.valueOf(result.get("price").toString()));
-		basicCharge.setDiscription((result.get("Discription").toString()));
+		Integer price = new Integer(0);
+		String description = "";
+		try {
+			result = jdbc.queryForMap(sql);
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("マスターにデータがありません。");
+		}
+		if(result != null) {
+			price = Integer.valueOf(result.get("price").toString());
+			description = result.get("Discription").toString();
+		}
+		basicCharge.setPrice(price);
+		basicCharge.setDiscription(description);
 		return basicCharge;
 	}
 
