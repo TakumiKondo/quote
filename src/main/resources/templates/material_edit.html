@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="material_contents">
+		<div class="page-header">
+			<h1>材料費</h1>
+		</div>
+		<div class="page-content">
+		<form role="form" th:action="@{/material_edit}" th:object="${material}" method="post">
+ 			<div>
+				<button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
+				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
+			</div>
+			<div class="form-group">
+            	<label class="control-label" for="cd">材料コード</label>
+				<input type="text" class="form-control" id="cd" name="cd" th:value="*{cd}"/>
+ <!-- 				<span th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}" class="help-block">error!</span> -->
+			</div>
+<!--			<div class="form-group">
+            	<label class="control-label" for="discription">説明</label>
+            	<textarea rows="4" cols="35" class="form-control" id="discription" name="discription" th:field="*{discription}"></textarea>
+  				<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="help-block">error!</span>
+
+			</div> -->
+		</form>
+		</div>
+	</div>
+</body>
+</html>
