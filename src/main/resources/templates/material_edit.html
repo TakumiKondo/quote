@@ -12,22 +12,31 @@
 			<h1>材料費</h1>
 		</div>
 		<div class="page-content">
-		<form role="form" th:action="@{/material_edit}" th:object="${material}" method="post">
- 			<div>
-				<button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
-				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
-			</div>
+
+		<form role="form" th:action="@{/material_edit}" th:object="${materialForm}" method="post">
 			<div class="form-group">
             	<label class="control-label" for="cd">材料コード</label>
 				<input type="text" class="form-control" id="cd" name="cd" th:value="*{cd}"/>
- <!-- 				<span th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}" class="help-block">error!</span> -->
+  				<span class="text-danger" th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}"></span>
 			</div>
-<!--			<div class="form-group">
-            	<label class="control-label" for="discription">説明</label>
-            	<textarea rows="4" cols="35" class="form-control" id="discription" name="discription" th:field="*{discription}"></textarea>
-  				<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="help-block">error!</span>
-
-			</div> -->
+			<div class="form-group">
+            	<label class="control-label" for="cd">材料名</label>
+				<input type="text" class="form-control" id="name" name="name" th:value="*{name}"/>
+				<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+			</div>
+			<div class="form-group">
+            	<label class="control-label" for="unit_price">単価</label>
+				<input type="number" class="form-control" id="unitPrice" name="unitPrice" th:value="*{unitPrice}"/>
+				<span class="text-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
+			</div>
+ 			<div>
+				<div th:if="${action == 'insert'}">
+				    <button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
+				</div>
+				<div th:if="${action == 'update'}">
+					<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
+				</div>
+			</div>
 		</form>
 		</div>
 	</div>

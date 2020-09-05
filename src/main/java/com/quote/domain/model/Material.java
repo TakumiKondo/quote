@@ -2,10 +2,13 @@ package com.quote.domain.model;
 
 import java.util.Date;
 
+import com.sun.istack.NotNull;
+
 import lombok.Data;
 
 @Data
 public class Material {
+	@NotNull
 	private String cd;
 	private String name;
 	private Integer unit_price;

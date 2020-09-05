@@ -12,7 +12,11 @@
 			<h1>材料費</h1>
 		</div>
 		<div class="page-content">
-			<a th:href="@{/material_edit}" class="btn btn-outline-primary btn-sm">新規追加</a>
+			<form method="get" th:action="@{/material_edit}" th:object="${material}">
+				<button class="btn btn-outline-primary btn-sm" type="submit" name="insert">新規追加</button>
+			</form>
+
+
 			<div th:if="${materials.isEmpty()}">
 			    <p>登録された材料費はありません。</p>
 			</div>
