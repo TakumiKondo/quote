@@ -24,7 +24,7 @@ public class MaterialService {
 		return dao.getList();
 	}
 
-	public boolean insert(MaterialForm form) {
+	public void insert(MaterialForm form) {
 		Material material = new Material();
 		Date date = new Date();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -37,7 +37,11 @@ public class MaterialService {
 		material.setCreatet_user(userId);
 		material.setUpdated_at(date);
 		material.setUpdated_user(userId);
-		return dao.insert(material);
+		dao.insert(material);
+	}
+
+	public boolean existCd(MaterialForm form) {
+		return dao.existCd(form.getCd());
 	}
 
 }

@@ -33,21 +33,17 @@ public class MaterialDaoImpl implements MaterialDao {
 	}
 
 	@Override
-	public boolean insert(Material material) throws DataAccessException {
-		if(existCd(material)) {
-			return false;
-		}
+	public void insert(Material material) throws DataAccessException {
 		String sql = "INSERT INTO materials VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		System.out.println("material : " + material);
-		int result = jdbc.update(sql, material.getCd(), material.getName(), material.getUnit_price(),
+		jdbc.update(sql, material.getCd(), material.getName(), material.getUnit_price(),
 				material.getCreated_at(), material.getCreatet_user(), material.getUpdated_at(),
 				material.getUpdated_user(), material.getDeleted_at(), material.getDeleted_user());
-		return result == 1 ? true : false;
 	}
 
-	private boolean existCd(Material material) {
+	@Override
+	public boolean existCd(String cd) {
 		String sql = "SELECT COUNT(*) FROM materials WHERE cd = ? AND deleted_at IS NULL";
-		Integer result = jdbc.queryForObject(sql, Integer.class, material.getCd());
+		Integer result = jdbc.queryForObject(sql, Integer.class, cd);
 		return result > 0 ? true : false;
 	}
 

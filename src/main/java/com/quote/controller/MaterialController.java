@@ -33,14 +33,12 @@ public class MaterialController {
 
 	@PostMapping("/material_edit")
     public String postMaterialEdit(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
-		if(error.hasErrors()) {
-			return getMaterialEdit(form, model);
-		}
-		if(!service.insert(form)) {
+		if(service.existCd(form))
 			error.rejectValue("cd", "", "既に登録済みの材料コードです。");
+		if(error.hasErrors())
 			return getMaterialEdit(form, model);
-		}
 
+		service.insert(form);
         return getMaterial(model);
     }
 }

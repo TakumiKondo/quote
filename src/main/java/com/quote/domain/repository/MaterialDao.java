@@ -8,5 +8,6 @@ import com.quote.domain.model.Material;
 
 public interface MaterialDao {
     public List<Material> getList() throws DataAccessException;
-	public boolean insert(Material material) throws DataAccessException;
+	public void insert(Material material) throws DataAccessException;
+	public boolean existCd(String cd);
 }
