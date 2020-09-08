@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="material_form">
+		<div class="form-group">
+           	<label class="control-label" for="cd">材料コード</label>
+           	<div th:if="${action == 'insert'}">
+           		<input type="text" class="form-control" id="cd" name="cd" th:value="*{cd}"/>
+           	</div>
+           	<div th:if="${action == 'update'}">
+           		<input type="text" class="form-control" th:value="*{cd}" disabled="disabled"/>
+           		<input type="hidden" class="form-control" id="cd" name="cd" th:value="*{cd}"/>
+           	</div>
+ 			<span class="text-danger" th:if="${#fields.hasErrors('cd')}" th:errors="*{cd}"></span>
+		</div>
+		<div class="form-group">
+           	<label class="control-label" for="cd">材料名</label>
+			<input type="text" class="form-control" id="name" name="name" th:value="*{name}"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		</div>
+		<div class="form-group">
+           	<label class="control-label" for="unit_price">単価</label>
+			<input type="number" class="form-control" id="unitPrice" name="unitPrice" th:value="*{unitPrice}"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
+		</div>
+		<input type="hidden" class="form-control" id="updatedAt" name="updatedAt" th:value="*{updatedAt}"/>
+	</div>
+</body>
+</html>

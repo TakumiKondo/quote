@@ -13,7 +13,9 @@
 		</div>
 		<div class="page-content">
 
-		<form role="form" th:action="@{/material_edit}" th:object="${materialForm}" method="post">
+		<form role="form" th:action="@{/material/update}" th:object="${materialForm}" method="post">
+		<div th:include="__${form}__"></div>
+<!--
 			<div class="form-group">
             	<label class="control-label" for="cd">材料コード</label>
             	<div th:if="${action == 'insert'}">
@@ -35,13 +37,9 @@
 				<span class="text-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
 			</div>
  			<div>
-				<div th:if="${action == 'insert'}">
-				    <button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
-				</div>
-				<div th:if="${action == 'update'}">
-					<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
-				</div>
-			</div>
+-->
+				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
+<!-- </div> -->
 		</form>
 		</div>
 	</div>

@@ -23,11 +23,40 @@ public class MaterialController {
         return "home/homeLayout";
     }
 
-    @GetMapping(value="/material_edit", params="insert")
-    public String getMaterialEdit(@ModelAttribute MaterialForm materialForm, Model model) {
+
+    @GetMapping(value="/material_edit")
+    public String getEditInsert(@ModelAttribute MaterialForm materialForm, Model model) {
         model.addAttribute("contents", "material_edit::material_contents");
         model.addAttribute("materialForm", materialForm);
         model.addAttribute("action", "insert");
+        return "home/homeLayout";
+    }
+
+
+    @GetMapping(value="/material/edit/{cd:.+}")
+    public String getEditUpdate(@ModelAttribute MaterialForm materialForm, Model model) {
+    	//TODO 存在しないコードがリクエストされた場合に、403ページを表示する
+    	materialForm = service.selectOne(materialForm);
+    	return getEdit(materialForm, model);
+    }
+
+
+    /**
+     * BindingResultを保持するために、Modelが上書きされないよう別のメソッドで編集画面に戻す
+     * @param materialForm
+     * @param model
+     * @return
+     */
+    private String getEditError(@ModelAttribute MaterialForm materialForm, Model model) {
+        return getEdit(materialForm, model);
+    }
+
+
+    private String getEdit(MaterialForm materialForm, Model model) {
+        model.addAttribute("contents", "material_edit2::material_contents");
+        model.addAttribute("form", "material_form::material_form");
+        model.addAttribute("materialForm", materialForm);
+        model.addAttribute("action", "update");
         return "home/homeLayout";
     }
 
@@ -36,9 +65,19 @@ public class MaterialController {
 		if(service.existCd(form))
 			error.rejectValue("cd", "", "既に登録済みの材料コードです。");
 		if(error.hasErrors())
-			return getMaterialEdit(form, model);
-
+			return getEditInsert(form, model);
 		service.insert(form);
+        return getMaterial(model);
+    }
+
+
+	@PostMapping("/material/update")
+    public String postUpdate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
+		if(service.isUpdated(form))
+			error.rejectValue("cd", "", "既に他のユーザが更新済みです。一覧に戻ってご確認下さい。");
+		if(error.hasErrors())
+			return getEditError(form, model);
+		service.update(form);
         return getMaterial(model);
     }
 }
