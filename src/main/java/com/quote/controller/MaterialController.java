@@ -24,9 +24,10 @@ public class MaterialController {
     }
 
 
-    @GetMapping(value="/material_edit")
-    public String getEditInsert(@ModelAttribute MaterialForm materialForm, Model model) {
-        model.addAttribute("contents", "material_edit::material_contents");
+    @GetMapping(value="/material/add")
+    public String getEditAdd(@ModelAttribute MaterialForm materialForm, Model model) {
+        model.addAttribute("contents", "material_add::material_contents");
+        model.addAttribute("form", "material_form::material_form");
         model.addAttribute("materialForm", materialForm);
         model.addAttribute("action", "insert");
         return "home/homeLayout";
@@ -60,12 +61,12 @@ public class MaterialController {
         return "home/homeLayout";
     }
 
-	@PostMapping("/material_edit")
-    public String postMaterialEdit(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
+	@PostMapping("/material/create")
+    public String postMaterialCreate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
 		if(service.existCd(form))
 			error.rejectValue("cd", "", "既に登録済みの材料コードです。");
 		if(error.hasErrors())
-			return getEditInsert(form, model);
+			return getEditAdd(form, model);
 		service.insert(form);
         return getMaterial(model);
     }
