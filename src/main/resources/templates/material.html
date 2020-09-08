@@ -12,32 +12,28 @@
 			<h1>材料費</h1>
 		</div>
 		<div class="page-content">
-			<form method="get" th:action="@{/material_edit}" th:object="${material}">
+			<form method="get" th:action="@{/material/add}" th:object="${material}">
 				<button class="btn btn-outline-primary btn-sm" type="submit" name="insert">新規追加</button>
+				<div th:if="${materials.isEmpty()}">
+				    <p>登録された材料費はありません。</p>
+				</div>
+				<div th:unless="${materials.isEmpty()}">
+					<table border=1>
+						<thead><tr><th>材料コード</th><th>名称</th><th>単価</th><th></th></tr></thead>
+						<tbody>
+							<tr th:each="material : ${materials}"  th:object="${material}">
+							    <td th:text="*{cd}"></td>
+							    <td th:text="*{name}"></td>
+							    <td th:text="${material.commaOf1000() + '円'}"></td>
+								<td>
+									<a class="btn btn-outline-warning btn-sm" th:href="@{'/material/edit/' + *{cd}}">変更</a>
+									<button class="btn btn-outline-danger btn-sm delete-action">削除</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</form>
-
-
-			<div th:if="${materials.isEmpty()}">
-			    <p>登録された材料費はありません。</p>
-			</div>
-
-			<div th:unless="${materials.isEmpty()}">
-				<table border=1>
-					<thead><tr><th>材料コード</th><th>名称</th><th>単価</th><th></th></tr></thead>
-					<tbody>
-						<tr th:each="material : ${materials}"  th:object="${material}">
-						    <td th:text="*{cd}"></td>
-						    <td th:text="*{name}"></td>
-						    <td th:text="${material.commaOf1000() + '円'}"></td>
-							<td>
-								<a th:href="@{/material_edit}" class="btn btn-outline-warning btn-sm">変更</a>
-								<button class="btn btn-outline-danger btn-sm delete-action">削除</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
 		</div>
 	</div>
 </body>

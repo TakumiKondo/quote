@@ -12,9 +12,9 @@
 			<h1>材料費</h1>
 		</div>
 		<div class="page-content">
-			<form role="form" th:action="@{/material/update}" th:object="${materialForm}" method="post">
+			<form role="form" th:action="@{/material/create}" th:object="${materialForm}" method="post">
 				<div th:include="__${form}__"></div>
-				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
+				<button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
 			</form>
 		</div>
 	</div>

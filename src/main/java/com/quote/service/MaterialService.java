@@ -20,16 +20,17 @@ public class MaterialService {
 	@Autowired
 	MaterialDao dao;
 
+
 	public List<Material> getList() {
 		return dao.getList();
 	}
+
 
 	public void insert(MaterialForm form) {
 		Material material = new Material();
 		Date date = new Date();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
-
 		material.setCd(form.getCd());
 		material.setName(form.getName());
 		material.setUnit_price(form.getUnitPrice());
@@ -40,8 +41,36 @@ public class MaterialService {
 		dao.insert(material);
 	}
 
+
 	public boolean existCd(MaterialForm form) {
 		return dao.existCd(form.getCd());
+	}
+
+
+	public MaterialForm selectOne(MaterialForm form) {
+		return dao.selectOne(form.getCd());
+	}
+
+
+	public void update(MaterialForm form) {
+		Material material = new Material();
+		Date date = new Date();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userId = auth.getName();
+		material.setCd(form.getCd());
+		material.setName(form.getName());
+		material.setUnit_price(form.getUnitPrice());
+		material.setUpdated_at(date);
+		material.setUpdated_user(userId);
+		dao.update(material);
+	}
+
+
+	public boolean isUpdated(MaterialForm form) {
+		Material material = new Material();
+		material.setCd(form.getCd());
+		material.setUpdated_at(form.getUpdatedAt());
+		return dao.isUpdated(material);
 	}
 
 }
