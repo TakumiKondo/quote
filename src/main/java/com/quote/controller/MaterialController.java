@@ -54,7 +54,7 @@ public class MaterialController {
 
 
     private String getEdit(MaterialForm materialForm, Model model) {
-        model.addAttribute("contents", "material_edit2::material_contents");
+        model.addAttribute("contents", "material_edit::material_contents");
         model.addAttribute("form", "material_form::material_form");
         model.addAttribute("materialForm", materialForm);
         model.addAttribute("action", "update");
