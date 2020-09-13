@@ -29,7 +29,7 @@
 			<input type="number" class="form-control" id="unitPrice" name="unitPrice" th:value="*{unitPrice}"/>
 			<span class="text-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
 		</div>
-		<input type="hidden" class="form-control" id="updatedAt" name="updatedAt" th:value="*{updatedAt}"/>
+		<input type="hidden" class="form-control" id="updatedAt" name="updatedAt" th:value="${designForm.updatedAtToString()}"/>
 	</div>
 </body>
 </html>

@@ -42,4 +42,31 @@ public class DesignController {
     	service.insert(form);
         return getList(model);
     }
+
+
+    @GetMapping("/design/edit/{cd:.+}")
+    public String getEdit(@ModelAttribute DesignForm form, Model model) {
+    	form = service.selectOne(form);
+    	model.addAttribute("contents", "design_edit::design_contents");
+        model.addAttribute("form", "design_form::design_form");
+        model.addAttribute("designForm", form);
+        model.addAttribute("action", "update");
+        return "home/homeLayout";
+    }
+
+
+    @PostMapping("/design/update")
+    public String postUpdate(@ModelAttribute @Validated DesignForm form, BindingResult error, Model model) {
+    	if(service.isUpdated(form))
+    		error.rejectValue("cd", "", "既に他のユーザが更新済みです。");
+    	if(error.hasErrors()) {
+        	model.addAttribute("contents", "design_edit::design_contents");
+            model.addAttribute("form", "design_form::design_form");
+            model.addAttribute("designForm", form);
+            model.addAttribute("action", "update");
+            return "home/homeLayout";
+    	}
+    	service.update(form);
+    	return getList(model);
+    }
 }

@@ -1,6 +1,7 @@
 package com.quote.form;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
@@ -34,4 +35,8 @@ public class DesignForm {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updatedAt;
 
+	public String updatedAtToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(getUpdatedAt());
+	}
 }

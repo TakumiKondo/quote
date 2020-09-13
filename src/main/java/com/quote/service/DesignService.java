@@ -39,4 +39,31 @@ public class DesignService {
 		mapper.insert(design);
 	}
 
+	public DesignForm selectOne(DesignForm form) {
+		Design design = mapper.selectOne(form.getCd());
+		DesignForm df = new DesignForm();
+		df.setCd(design.getCd());
+		df.setName(design.getName());
+		df.setUnitPrice(design.getUnit_price());
+		df.setUpdatedAt((Date)design.getUpdated_at());
+		return df;
+	}
+
+	public void update(DesignForm form) {
+		Design design = new Design();
+		design.setCd(form.getCd());
+		design.setName(form.getName());
+		design.setUnit_price(form.getUnitPrice());
+		design.setUpdated_at(new Date());
+		design.setUpdated_user(SecurityContextHolder.getContext().getAuthentication().getName());
+		mapper.update(design);
+	}
+
+	public boolean isUpdated(DesignForm form) {
+		Design design = new Design();
+		design.setCd(form.getCd());
+		design.setUpdated_at(form.getUpdatedAt());
+		return mapper.isUpdate(design) > 0 ? false : true;
+	}
+
 }
