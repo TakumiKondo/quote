@@ -69,4 +69,15 @@ public class DesignController {
     	service.update(form);
     	return getList(model);
     }
+
+
+    @PostMapping("/design/delete")
+    public String postDelete(@ModelAttribute @Validated DesignForm form, BindingResult error, Model model) {
+    	if(service.isUpdated(form)) {
+    		model.addAttribute("isUpdated", "既に他のユーザが更新済みのため、削除できませんでした。");
+    		return getList(model);
+    	}
+    	service.delete(form);
+    	return getList(model);
+    }
 }

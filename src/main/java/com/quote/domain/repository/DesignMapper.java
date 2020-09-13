@@ -2,6 +2,7 @@ package com.quote.domain.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -33,4 +34,10 @@ public interface DesignMapper {
 
 	@Select("SELECT count(cd) FROM designs WHERE cd = #{cd} AND updated_at = #{updated_at}")
 	public int isUpdate(Design design);
+
+
+	@Delete("UPDATE designs "
+			+ "SET deleted_at = #{deleted_at}, deleted_user = #{deleted_user} "
+			+ "WHERE cd = #{cd} ")
+	public void delete(Design design);
 }

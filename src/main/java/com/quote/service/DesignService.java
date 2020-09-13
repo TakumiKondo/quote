@@ -66,4 +66,12 @@ public class DesignService {
 		return mapper.isUpdate(design) > 0 ? false : true;
 	}
 
+	public void delete(DesignForm form) {
+		Design design = new Design();
+		design.setCd(form.getCd());
+		design.setDeleted_at(new Date());
+		design.setDeleted_user(SecurityContextHolder.getContext().getAuthentication().getName());
+		mapper.delete(design);
+	}
+
 }
