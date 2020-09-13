@@ -10,7 +10,7 @@ public class Design {
 	private String name;
 	private Integer unit_price;
     private Date created_at;
-    private String createt_user;
+    private String created_user;
     private Date updated_at;
     private String updated_user;
     private Date deleted_at;

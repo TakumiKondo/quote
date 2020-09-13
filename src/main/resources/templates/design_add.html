@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="design_contents">
+		<div class="page-header">
+			<h1>デザイン加工費 新規登録</h1>
+		</div>
+		<div class="page-content w-50">
+			<form role="form" th:action="@{/design/create}" th:object="${designForm}" method="post">
+				<div th:include="__${form}__"></div>
+				<button type="submit" class="btn btn-outline-primary btn-sm insert-action">登録</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

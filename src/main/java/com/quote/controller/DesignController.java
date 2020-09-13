@@ -3,8 +3,13 @@ package com.quote.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.quote.form.DesignForm;
 import com.quote.service.DesignService;
 
 @Controller
@@ -19,4 +24,22 @@ public class DesignController {
         return "home/homeLayout";
     }
 
+
+    @GetMapping("/design/add")
+    public String getAdd(@ModelAttribute DesignForm form, Model model) {
+        model.addAttribute("contents", "design_add::design_contents");
+        model.addAttribute("form", "design_form::design_form");
+        model.addAttribute("designForm", form);
+        model.addAttribute("action", "insert");
+        return "home/homeLayout";
+    }
+
+
+    @PostMapping("/design/create")
+    public String postCreate(@ModelAttribute @Validated DesignForm form, BindingResult error, Model model) {
+    	if(error.hasErrors())
+    		return getAdd(form, model);
+    	service.insert(form);
+        return getList(model);
+    }
 }
