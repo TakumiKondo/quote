@@ -73,4 +73,15 @@ public class MaterialService {
 		return dao.isUpdated(material);
 	}
 
+
+	public void delete(MaterialForm form) {
+		Material material = new Material();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String userId = auth.getName();
+		material.setCd(form.getCd());
+		material.setDeleted_at(new Date());
+		material.setDeleted_user(userId);
+		dao.delete(material);
+	}
+
 }

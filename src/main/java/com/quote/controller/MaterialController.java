@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.quote.domain.model.Material;
 import com.quote.form.MaterialForm;
 import com.quote.service.MaterialService;
 @Controller
@@ -79,6 +80,17 @@ public class MaterialController {
 		if(error.hasErrors())
 			return getEditError(form, model);
 		service.update(form);
+        return getMaterial(model);
+    }
+
+
+	@PostMapping("/material/delete")
+    public String postDelete(@ModelAttribute MaterialForm form, @Validated Material m, BindingResult error, Model model) {
+		if(service.isUpdated(form)) {
+			model.addAttribute("isUpdated", "既に他のユーザが更新済みです。");
+			return getMaterial(model);
+		}
+		service.delete(form);
         return getMaterial(model);
     }
 }

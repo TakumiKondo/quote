@@ -14,4 +14,5 @@ public interface MaterialDao {
 	public MaterialForm selectOne(String cd) throws DataAccessException;
 	public void update(Material material) throws DataAccessException;
 	public boolean isUpdated(Material material) throws DataAccessException;
+	public void delete(Material material) throws DataAccessException;
 }

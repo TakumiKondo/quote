@@ -35,6 +35,7 @@ public class MaterialDaoImpl implements MaterialDao {
 			material.setCd(result.get("cd").toString());
 			material.setName(result.get("name").toString());
 			material.setUnit_price(Integer.valueOf(result.get("unit_price").toString()));
+			material.setUpdated_at((Date)result.get("updated_at"));
 			materials.add(material);
 		}
 		return materials;
@@ -103,6 +104,20 @@ public class MaterialDaoImpl implements MaterialDao {
 				.addValue("updated_at", material.getUpdated_at());
 		Integer result = namedJdbc.queryForObject(sql, parameters, Integer.class);
 		return result > 0 ? false : true;
+	}
+
+
+	@Override
+	public void delete(Material material) throws DataAccessException {
+		String sql = "UPDATE materials SET deleted_at = :deleted_at, deleted_user = :deleted_user "
+				+ "WHERE cd = :cd";
+		MapSqlParameterSource parameters = new MapSqlParameterSource()
+			.addValue("cd", material.getCd())
+			.addValue("deleted_at", material.getDeleted_at())
+			.addValue("deleted_user", material.getDeleted_user());
+		int result = namedJdbc.update(sql, parameters);
+		if(result == 0)
+			throw new IllegalStateException("削除対象が存在しませんでした。");
 	}
 
 }
