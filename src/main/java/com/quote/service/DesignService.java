@@ -74,4 +74,8 @@ public class DesignService {
 		mapper.delete(design);
 	}
 
+	public boolean existCd(DesignForm form) {
+		return mapper.countRow(form.getCd()) > 0 ? true : false;
+	}
+
 }

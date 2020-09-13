@@ -40,4 +40,8 @@ public interface DesignMapper {
 			+ "SET deleted_at = #{deleted_at}, deleted_user = #{deleted_user} "
 			+ "WHERE cd = #{cd} ")
 	public void delete(Design design);
+
+
+	@Select("SELECT COUNT(cd) FROM designs WHERE cd = #{cd}")
+	public int countRow(String cd);
 }

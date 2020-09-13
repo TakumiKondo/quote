@@ -37,6 +37,8 @@ public class DesignController {
 
     @PostMapping("/design/create")
     public String postCreate(@ModelAttribute @Validated DesignForm form, BindingResult error, Model model) {
+    	if(service.existCd(form))
+    		error.rejectValue("cd", "", "既に登録済みのコードです。");
     	if(error.hasErrors())
     		return getAdd(form, model);
     	service.insert(form);
