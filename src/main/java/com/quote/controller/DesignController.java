@@ -1,6 +1,7 @@
 package com.quote.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,27 +50,31 @@ public class DesignController {
     @GetMapping("/design/edit/{cd:.+}")
     public String getEdit(@ModelAttribute DesignForm form, Model model) {
     	form = service.selectOne(form);
-    	model.addAttribute("contents", "design_edit::design_contents");
-        model.addAttribute("form", "design_form::design_form");
-        model.addAttribute("designForm", form);
-        model.addAttribute("action", "update");
-        return "home/homeLayout";
+    	return getEditForm(form, model);
     }
 
 
     @PostMapping("/design/update")
     public String postUpdate(@ModelAttribute @Validated DesignForm form, BindingResult error, Model model) {
-    	if(service.isUpdated(form))
-    		error.rejectValue("cd", "", "既に他のユーザが更新済みです。");
     	if(error.hasErrors()) {
-        	model.addAttribute("contents", "design_edit::design_contents");
-            model.addAttribute("form", "design_form::design_form");
-            model.addAttribute("designForm", form);
-            model.addAttribute("action", "update");
-            return "home/homeLayout";
+    		return getEditForm(form, model);
     	}
-    	service.update(form);
+    	try {
+    		service.update(form);
+		} catch (ObjectOptimisticLockingFailureException e) {
+			System.out.println(e.getIdentifier());
+			error.rejectValue("cd", "", "既に他のユーザが更新済みです。");
+            return getEditForm(form, model);
+		}
     	return getList(model);
+    }
+
+    private String getEditForm(DesignForm form, Model model) {
+    	model.addAttribute("contents", "design_edit::design_contents");
+        model.addAttribute("form", "design_form::design_form");
+        model.addAttribute("designForm", form);
+        model.addAttribute("action", "update");
+        return "home/homeLayout";
     }
 
 

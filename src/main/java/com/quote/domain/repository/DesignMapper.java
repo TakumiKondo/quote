@@ -28,9 +28,9 @@ public interface DesignMapper {
 
 	@Update("UPDATE designs SET "
 			+ "name = #{name}, unit_price = #{unit_price}"
-			+ ", updated_at = #{updated_at}, updated_user = #{updated_user} "
-			+ "WHERE cd = #{cd}")
-	public void update(Design design);
+			+ ", updated_at = now(), updated_user = #{updated_user} "
+			+ "WHERE cd = #{cd} AND updated_at = #{updated_at}")
+	public int update(Design design);
 
 	@Select("SELECT count(cd) FROM designs WHERE cd = #{cd} AND updated_at = #{updated_at}")
 	public int isUpdate(Design design);

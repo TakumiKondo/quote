@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -54,9 +55,12 @@ public class DesignService {
 		design.setCd(form.getCd());
 		design.setName(form.getName());
 		design.setUnit_price(form.getUnitPrice());
-		design.setUpdated_at(new Date());
+		design.setUpdated_at(form.getUpdatedAt());
 		design.setUpdated_user(SecurityContextHolder.getContext().getAuthentication().getName());
-		mapper.update(design);
+		int result = mapper.update(design);
+		if(result == 0) {
+			throw new ObjectOptimisticLockingFailureException(Design.class, "1001");
+		}
 	}
 
 	public boolean isUpdated(DesignForm form) {
