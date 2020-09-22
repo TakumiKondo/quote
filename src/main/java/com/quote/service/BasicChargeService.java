@@ -3,6 +3,7 @@ package com.quote.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,10 @@ public class BasicChargeService {
 		return dao.getOne();
 	}
 
-	public void update(BasicCharge basicCharge) {
+	public void update(BasicCharge basicCharge) throws ObjectOptimisticLockingFailureException {
 		Date date = new Date();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
-
 		basicCharge.setCreated_at(date);
 		basicCharge.setCreatet_user(userId);
 		basicCharge.setUpdated_at(date);

@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS taxes;
 CREATE TABLE basic_charge
 (
 	price int unsigned NOT NULL,
-	discription text NOT NULL,
+	description text NOT NULL,
 	created_at datetime NOT NULL,
 	createt_user varchar(100) NOT NULL,
 	updated_at datetime,

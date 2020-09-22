@@ -14,21 +14,20 @@
 		<div class="page-content">
 		<form role="form" th:action="@{/basic_charge_edit}" th:object="${basicCharge}" method="post">
 			<div>
-				<!-- <a class="btn btn-outline-warning btn-sm update-action" th:href="@{/basic_charge}">更新</a> -->
-				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button>
+				<button type="submit" class="btn btn-outline-warning btn-sm update-action">更新</button><br>
+				<span class="text-danger" th:if="${isUpdated}" th:text="${isUpdated}"></span>
 			</div>
 			<div class="form-group">
             	<label class="control-label" for="price">基本料金</label>
             	<input type="number" class="form-control" id="price" name="price" max="9999999" min="0" th:value="*{price}"/>
-<!--  				<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="help-block">error!</span>
--->
 			</div>
 			<div class="form-group">
             	<label class="control-label" for="discription">説明</label>
-            	<textarea rows="4" cols="35" class="form-control" id="discription" name="discription" th:field="*{discription}"></textarea>
+            	<textarea rows="4" cols="35" class="form-control" id="discription" name="discription" th:field="*{description}"></textarea>
 <!--  				<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="help-block">error!</span>
 -->
 			</div>
+			<input type="hidden" th:name="version" th:value="*{version}">
 		</form>
 		</div>
 	</div>

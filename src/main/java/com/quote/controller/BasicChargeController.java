@@ -1,6 +1,7 @@
 package com.quote.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,15 @@ public class BasicChargeController {
 
     @PostMapping("/basic_charge_edit")
     public String postBasicChargeEdit(@ModelAttribute BasicCharge basicCharge, Model model) {
-    	service.update(basicCharge);
+    	try {
+    		service.update(basicCharge);
+		} catch (ObjectOptimisticLockingFailureException e) {
+			model.addAttribute("isUpdated", "既に他のユーザが更新済みのため変更できません。");
+	        model.addAttribute("contents", "basic_charge_edit::contents");
+	        model.addAttribute("basicCharge", basicCharge);
+	        System.out.println("Model : " + model);
+	        return "home/homeLayout";
+		}
     	return getBasicCharge(model);
     }
 
