@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -52,35 +53,28 @@ public class MaterialService {
 	}
 
 
-	public void update(MaterialForm form) {
+	public void update(MaterialForm form) throws ObjectOptimisticLockingFailureException {
 		Material material = new Material();
-		Date date = new Date();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
 		material.setCd(form.getCd());
 		material.setName(form.getName());
 		material.setUnit_price(form.getUnitPrice());
-		material.setUpdated_at(date);
+		material.setUpdated_at(new Date());
 		material.setUpdated_user(userId);
+		material.setVersion(form.getVersion());
 		dao.update(material);
 	}
 
 
-	public boolean isUpdated(MaterialForm form) {
-		Material material = new Material();
-		material.setCd(form.getCd());
-		material.setUpdated_at(form.getUpdatedAt());
-		return dao.isUpdated(material);
-	}
-
-
-	public void delete(MaterialForm form) {
+	public void delete(MaterialForm form) throws ObjectOptimisticLockingFailureException {
 		Material material = new Material();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = auth.getName();
 		material.setCd(form.getCd());
 		material.setDeleted_at(new Date());
 		material.setDeleted_user(userId);
+		material.setVersion(form.getVersion());
 		dao.delete(material);
 	}
 

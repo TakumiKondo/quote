@@ -1,6 +1,7 @@
 package com.quote.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,22 +76,26 @@ public class MaterialController {
 
 	@PostMapping("/material/update")
     public String postUpdate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
-		if(service.isUpdated(form))
-			error.rejectValue("cd", "", "既に他のユーザが更新済みです。一覧に戻ってご確認下さい。");
 		if(error.hasErrors())
 			return getEditError(form, model);
-		service.update(form);
-        return getMaterial(model);
+
+		try {
+			service.update(form);
+		} catch (ObjectOptimisticLockingFailureException e) {
+			error.rejectValue("cd", "", "既に他のユーザが更新済みです。一覧に戻ってご確認下さい。");
+			return getEditError(form, model);
+		}
+        return "redirect:/material";
     }
 
 
 	@PostMapping("/material/delete")
     public String postDelete(@ModelAttribute MaterialForm form, @Validated Material m, BindingResult error, Model model) {
-		if(service.isUpdated(form)) {
+		try {
+			service.delete(form);
+		} catch (ObjectOptimisticLockingFailureException e) {
 			model.addAttribute("isUpdated", "既に他のユーザが更新済みです。");
-			return getMaterial(model);
 		}
-		service.delete(form);
         return getMaterial(model);
     }
 }

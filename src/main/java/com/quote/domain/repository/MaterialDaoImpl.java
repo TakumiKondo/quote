@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Repository;
 
 import com.quote.domain.model.Material;
@@ -36,6 +37,7 @@ public class MaterialDaoImpl implements MaterialDao {
 			material.setName(result.get("name").toString());
 			material.setUnit_price(Integer.valueOf(result.get("unit_price").toString()));
 			material.setUpdated_at((Date)result.get("updated_at"));
+			material.setVersion(Integer.valueOf(result.get("version").toString()));
 			materials.add(material);
 		}
 		return materials;
@@ -44,10 +46,10 @@ public class MaterialDaoImpl implements MaterialDao {
 
 	@Override
 	public void insert(Material material) throws DataAccessException {
-		String sql = "INSERT INTO materials VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO materials VALUES(?, ?, ?, ?, ?, ?, ?, null, null, 0)";
 		jdbc.update(sql, material.getCd(), material.getName(), material.getUnit_price(),
-				material.getCreated_at(), material.getCreatet_user(), material.getUpdated_at(),
-				material.getUpdated_user(), material.getDeleted_at(), material.getDeleted_user());
+				material.getCreated_at(), material.getCreatet_user(),
+				material.getUpdated_at(),material.getUpdated_user());
 	}
 
 
@@ -74,7 +76,7 @@ public class MaterialDaoImpl implements MaterialDao {
 		mf.setCd((String)result.get("cd"));
 		mf.setName((String)result.get("name"));
 		mf.setUnitPrice(Integer.valueOf(result.get("unit_price").toString()));
-		mf.setUpdatedAt((Date)result.get("updated_at"));
+		mf.setVersion(Integer.valueOf(result.get("version").toString()));
 		return mf;
 	}
 
@@ -82,42 +84,34 @@ public class MaterialDaoImpl implements MaterialDao {
 	@Override
 	public void update(Material material) throws DataAccessException {
 		String sql = "UPDATE materials SET name = :name, unit_price = :unit_price, "
-				+ "updated_at = :updated_at, updated_user = :updated_user "
-				+ "WHERE cd = :cd";
+				+ "updated_at = :updated_at, updated_user = :updated_user, "
+				+ "version = :version + 1 "
+				+ "WHERE cd = :cd AND version = :version";
 		MapSqlParameterSource parameters = new MapSqlParameterSource()
 			.addValue("cd", material.getCd())
 			.addValue("name", material.getName())
 			.addValue("unit_price", material.getUnit_price())
 			.addValue("updated_at", material.getUpdated_at())
-			.addValue("updated_user", material.getUpdated_user());
+			.addValue("updated_user", material.getUpdated_user())
+			.addValue("version", material.getVersion());
 		int result = namedJdbc.update(sql, parameters);
 		if(result == 0)
-			throw new IllegalStateException("更新対象が存在しませんでした。");
-	}
-
-
-	@Override
-	public boolean isUpdated(Material material) throws DataAccessException {
-		String sql = "SELECT COUNT(*) FROM materials WHERE cd = :cd AND updated_at = :updated_at";
-		MapSqlParameterSource parameters = new MapSqlParameterSource()
-				.addValue("cd", material.getCd())
-				.addValue("updated_at", material.getUpdated_at());
-		Integer result = namedJdbc.queryForObject(sql, parameters, Integer.class);
-		return result > 0 ? false : true;
+			throw new ObjectOptimisticLockingFailureException(Material.class, "1001");
 	}
 
 
 	@Override
 	public void delete(Material material) throws DataAccessException {
 		String sql = "UPDATE materials SET deleted_at = :deleted_at, deleted_user = :deleted_user "
-				+ "WHERE cd = :cd";
+				+ "WHERE cd = :cd AND version = :version";
 		MapSqlParameterSource parameters = new MapSqlParameterSource()
 			.addValue("cd", material.getCd())
 			.addValue("deleted_at", material.getDeleted_at())
-			.addValue("deleted_user", material.getDeleted_user());
+			.addValue("deleted_user", material.getDeleted_user())
+			.addValue("version", material.getVersion());
 		int result = namedJdbc.update(sql, parameters);
 		if(result == 0)
-			throw new IllegalStateException("削除対象が存在しませんでした。");
+			throw new ObjectOptimisticLockingFailureException(Material.class, "1001");
 	}
 
 }
