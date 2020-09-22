@@ -46,7 +46,7 @@ public class DesignService {
 		df.setCd(design.getCd());
 		df.setName(design.getName());
 		df.setUnitPrice(design.getUnit_price());
-		df.setUpdatedAt((Date)design.getUpdated_at());
+		df.setVersion(design.getVersion());
 		return df;
 	}
 
@@ -55,8 +55,9 @@ public class DesignService {
 		design.setCd(form.getCd());
 		design.setName(form.getName());
 		design.setUnit_price(form.getUnitPrice());
-		design.setUpdated_at(form.getUpdatedAt());
+		design.setUpdated_at(new Date());
 		design.setUpdated_user(SecurityContextHolder.getContext().getAuthentication().getName());
+		design.setVersion(form.getVersion());
 		int result = mapper.update(design);
 		if(result == 0) {
 			throw new ObjectOptimisticLockingFailureException(Design.class, "1001");
@@ -66,7 +67,7 @@ public class DesignService {
 	public boolean isUpdated(DesignForm form) {
 		Design design = new Design();
 		design.setCd(form.getCd());
-		design.setUpdated_at(form.getUpdatedAt());
+		design.setVersion(form.getVersion());
 		return mapper.isUpdate(design) > 0 ? false : true;
 	}
 

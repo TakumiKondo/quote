@@ -30,7 +30,7 @@
 								<form method="post" th:action="@{/design/delete}" class="block_right">
 									<button class="btn btn-outline-danger btn-sm delete-action" type="submit">削除</button>
 									<input type="hidden" th:name="cd" th:value="*{cd}">
-									<input type="hidden" th:name="updatedAt" th:value="${design.updatedAtToString()}">
+									<input type="hidden" th:name="version" th:value="*{version}">
 								</form>
 							</td>
 						</tr>

@@ -62,11 +62,10 @@ public class DesignController {
     	try {
     		service.update(form);
 		} catch (ObjectOptimisticLockingFailureException e) {
-			System.out.println(e.getIdentifier());
 			error.rejectValue("cd", "", "既に他のユーザが更新済みです。");
             return getEditForm(form, model);
 		}
-    	return getList(model);
+    	return "redirect:/design";
     }
 
     private String getEditForm(DesignForm form, Model model) {

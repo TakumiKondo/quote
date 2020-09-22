@@ -1,6 +1,5 @@
 package com.quote.domain.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import lombok.Data;
@@ -16,13 +15,9 @@ public class Design {
     private String updated_user;
     private Date deleted_at;
     private String deleted_user;
+    private int version;
 
     public String commaOf1000() {
     	return String.format("%,d", unit_price);
     }
-
-	public String updatedAtToString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return sdf.format(getUpdated_at());
-	}
 }

@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>0</x>
-	<y>130</y>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -138,7 +138,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-08-20 20:49:16</creation_date>
-			<updated_date>2020-08-23 11:07:13</updated_date>
+			<updated_date>2020-09-22 12:41:01</updated_date>
 			<model_property>
 				<name>プロジェクト名</name>
 				<value></value>
@@ -687,18 +687,34 @@
 			<physical_name>updated_user</physical_name>
 			<type>varchar(n)</type>
 		</word>
+		<word>
+			<id>32</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>true</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>バージョン</logical_name>
+			<physical_name>version</physical_name>
+			<type>integer</type>
+		</word>
 	</dictionary>
 	<tablespace_set>
 	</tablespace_set>
 	<contents>
 		<table>
 			<id>0</id>
-			<height>212</height>
-			<width>194</width>
+			<height>254</height>
+			<width>218</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
 			<x>11</x>
-			<y>12</y>
+			<y>276</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -706,21 +722,54 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>basic_charge</physical_name>
-			<logical_name>基本料金</logical_name>
+			<physical_name>materials</physical_name>
+			<logical_name>材料費</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>22</word_id>
-					<id>6</id>
+					<word_id>4</word_id>
+					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>19</word_id>
+					<id>8</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -747,13 +796,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>12</word_id>
-					<id>7</id>
+					<word_id>28</word_id>
+					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>text</type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -795,12 +844,12 @@
 		</table>
 		<table>
 			<id>1</id>
-			<height>233</height>
-			<width>218</width>
+			<height>254</height>
+			<width>203</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>11</x>
-			<y>240</y>
+			<x>252</x>
+			<y>276</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -808,16 +857,16 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>materials</physical_name>
-			<logical_name>材料費</logical_name>
+			<physical_name>jewelries</physical_name>
+			<logical_name>宝飾費</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>4</word_id>
-					<id>8</id>
+					<word_id>3</word_id>
+					<id>10</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -849,8 +898,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>19</word_id>
-					<id>9</id>
+					<word_id>18</word_id>
+					<id>11</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -883,7 +932,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>27</word_id>
-					<id>10</id>
+					<id>12</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -930,12 +979,12 @@
 		</table>
 		<table>
 			<id>2</id>
-			<height>233</height>
-			<width>200</width>
+			<height>254</height>
+			<width>224</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>274</x>
-			<y>264</y>
+			<x>528</x>
+			<y>276</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -943,16 +992,16 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>jewelries</physical_name>
-			<logical_name>宝飾費</logical_name>
+			<physical_name>benefits</physical_name>
+			<logical_name>特典</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>3</word_id>
-					<id>11</id>
+					<word_id>5</word_id>
+					<id>13</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -984,8 +1033,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>18</word_id>
-					<id>12</id>
+					<word_id>20</word_id>
+					<id>14</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1017,8 +1066,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>28</word_id>
-					<id>13</id>
+					<word_id>27</word_id>
+					<id>15</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1066,10 +1115,10 @@
 		<table>
 			<id>3</id>
 			<height>233</height>
-			<width>243</width>
+			<width>224</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>252</x>
+			<x>528</x>
 			<y>12</y>
 			<color>
 				<r>128</r>
@@ -1078,16 +1127,16 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>designs</physical_name>
-			<logical_name>デザイン加工費</logical_name>
+			<physical_name>stamps</physical_name>
+			<logical_name>刻印加工費</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>1</word_id>
-					<id>14</id>
+					<word_id>2</word_id>
+					<id>16</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1119,8 +1168,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>16</word_id>
-					<id>15</id>
+					<word_id>17</word_id>
+					<id>17</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1152,8 +1201,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>29</word_id>
-					<id>16</id>
+					<word_id>27</word_id>
+					<id>18</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1200,12 +1249,12 @@
 		</table>
 		<table>
 			<id>4</id>
-			<height>233</height>
-			<width>224</width>
+			<height>275</height>
+			<width>207</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>528</x>
-			<y>264</y>
+			<x>9</x>
+			<y>540</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1213,21 +1262,21 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>benefits</physical_name>
-			<logical_name>特典</logical_name>
+			<physical_name>quote_history</physical_name>
+			<logical_name>見積もり履歴</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>5</word_id>
-					<id>17</id>
+					<word_id>24</word_id>
+					<id>19</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>date</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1254,8 +1303,41 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>20</word_id>
-					<id>18</id>
+					<word_id>14</word_id>
+					<id>20</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>integer</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>9</word_id>
+					<id>21</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1287,13 +1369,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>28</word_id>
-					<id>19</id>
+					<word_id>23</word_id>
+					<id>22</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>text</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1335,11 +1417,11 @@
 		</table>
 		<table>
 			<id>5</id>
-			<height>233</height>
-			<width>224</width>
+			<height>212</height>
+			<width>194</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>528</x>
+			<x>11</x>
 			<y>12</y>
 			<color>
 				<r>128</r>
@@ -1348,54 +1430,21 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>stamps</physical_name>
-			<logical_name>刻印加工費</logical_name>
+			<physical_name>basic_charge</physical_name>
+			<logical_name>基本料金</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>2</word_id>
-					<id>20</id>
+					<word_id>22</word_id>
+					<id>23</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>17</word_id>
-					<id>21</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1422,13 +1471,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>28</word_id>
-					<id>22</id>
+					<word_id>12</word_id>
+					<id>24</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>text</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1470,11 +1519,11 @@
 		</table>
 		<table>
 			<id>6</id>
-			<height>75</height>
-			<width>120</width>
+			<height>233</height>
+			<width>243</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>780</x>
+			<x>252</x>
 			<y>12</y>
 			<color>
 				<r>128</r>
@@ -1483,21 +1532,21 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>taxes</physical_name>
-			<logical_name>税率</logical_name>
+			<physical_name>designs</physical_name>
+			<logical_name>デザイン加工費</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>6</word_id>
-					<id>23</id>
+					<word_id>1</word_id>
+					<id>25</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>integer</type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1524,8 +1573,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>21</word_id>
-					<id>24</id>
+					<word_id>16</word_id>
+					<id>26</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1557,79 +1606,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>26</word_id>
-					<id>25</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>float</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>25</word_id>
-					<id>26</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>date</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>13</word_id>
+					<word_id>29</word_id>
 					<id>27</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>date</type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1671,12 +1654,12 @@
 		</table>
 		<table>
 			<id>7</id>
-			<height>233</height>
+			<height>254</height>
 			<width>224</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
 			<x>780</x>
-			<y>300</y>
+			<y>324</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1758,7 +1741,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>28</word_id>
+					<word_id>27</word_id>
 					<id>30</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1806,12 +1789,12 @@
 		</table>
 		<table>
 			<id>8</id>
-			<height>254</height>
-			<width>207</width>
+			<height>75</height>
+			<width>120</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
-			<x>36</x>
-			<y>516</y>
+			<x>780</x>
+			<y>12</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1819,49 +1802,16 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>quote_history</physical_name>
-			<logical_name>見積もり履歴</logical_name>
+			<physical_name>taxes</physical_name>
+			<logical_name>税率</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>24</word_id>
+					<word_id>6</word_id>
 					<id>31</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>date</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>14</word_id>
-					<id>32</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1893,8 +1843,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>9</word_id>
-					<id>33</id>
+					<word_id>21</word_id>
+					<id>32</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1926,13 +1876,79 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>23</word_id>
+					<word_id>26</word_id>
+					<id>33</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>float</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>25</word_id>
 					<id>34</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>text</type>
+					<type>date</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>13</word_id>
+					<id>35</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>date</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1976,7 +1992,7 @@
 	<column_groups>
 			<column_group>
 				<id>0</id>
-				<group_name>日付</group_name>
+				<group_name>共通カラム</group_name>
 				<columns>
 					<normal_column>
 						<word_id>7</word_id>
@@ -2156,6 +2172,39 @@
 						<auto_increment>false</auto_increment>
 						<foreign_key>false</foreign_key>
 						<not_null>false</not_null>
+						<primary_key>false</primary_key>
+						<unique_key>false</unique_key>
+						<character_set></character_set>
+						<collation></collation>
+						<sequence>
+							<name></name>
+							<schema></schema>
+							<increment></increment>
+							<min_value></min_value>
+							<max_value></max_value>
+							<start></start>
+							<cache></cache>
+							<nocache>false</nocache>
+							<cycle>false</cycle>
+							<order>false</order>
+							<description></description>
+							<data_type></data_type>
+							<decimal_size>0</decimal_size>
+						</sequence>
+					</normal_column>
+					<normal_column>
+						<word_id>32</word_id>
+						<id>6</id>
+						<description></description>
+						<unique_key_name></unique_key_name>
+						<logical_name></logical_name>
+						<physical_name></physical_name>
+						<type>integer</type>
+						<constraint></constraint>
+						<default_value></default_value>
+						<auto_increment>false</auto_increment>
+						<foreign_key>false</foreign_key>
+						<not_null>true</not_null>
 						<primary_key>false</primary_key>
 						<unique_key>false</unique_key>
 						<character_set></character_set>

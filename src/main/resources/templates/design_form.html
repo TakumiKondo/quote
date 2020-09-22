@@ -30,7 +30,7 @@
 			<span class="text-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
 		</div>
 		<div th:if="${action == 'update'}">
-			<input type="hidden" class="form-control" id="updatedAt" name="updatedAt" th:value="${designForm.updatedAtToString()}"/>
+			<input type="hidden" class="form-control" id="version" name="version" th:value="*{version}"/>
 		</div>
 	</div>
 </body>

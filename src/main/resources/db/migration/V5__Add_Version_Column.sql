@@ -1,0 +1,9 @@
+ALTER TABLE basic_charge ADD version int UNSIGNED NOT NULL;
+ALTER TABLE designs ADD version int UNSIGNED NOT NULL;
+ALTER TABLE stamps ADD version int UNSIGNED NOT NULL;
+ALTER TABLE materials ADD version int UNSIGNED NOT NULL;
+ALTER TABLE jewelries ADD version int UNSIGNED NOT NULL;
+ALTER TABLE benefits ADD version int UNSIGNED NOT NULL;
+ALTER TABLE options ADD version int UNSIGNED NOT NULL;
+ALTER TABLE quote_history ADD version int UNSIGNED NOT NULL;
+ALTER TABLE taxes ADD version int UNSIGNED NOT NULL;
