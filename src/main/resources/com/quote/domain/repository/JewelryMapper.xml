@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quote.domain.repository.JewelryMapper">
+  <resultMap type="com.quote.domain.model.Jewelry" id="jewelry">
+	<id column="cd" property="cd" />
+	<result column="name" property="name" />
+	<result column="unit_price" property="unit_price" />
+	<result column="created_at" property="created_at" />
+	<result column="created_user" property="created_user" />
+	<result column="updated_at" property="updated_at" />
+	<result column="updated_user" property="updated_user" />
+	<result column="deleted_at" property="deleted_at" />
+	<result column="deleted_user" property="deleted_user" />
+	<result column="version" property="version" />
+  </resultMap>
+
+  <select id="getList" resultMap="jewelry">
+	SELECT * FROM jewelries WHERE deleted_at IS NULL
+  </select>
+</mapper>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:fragment="jewelry_contents">
+		<div class="page-header">
+			<h1>宝飾費</h1>
+		</div>
+	<div class="page-content">
+			<a class="btn btn-outline-primary btn-sm" th:href="@{/jewelry/add}">新規追加</a>
+			<div th:if="${jewelries.isEmpty()}">
+			    <p>登録された宝飾費はありません。</p>
+			</div>
+
+			<div th:unless="${jewelries.isEmpty()}">
+				<span class="text-danger" th:if="${isUpdated}" th:text="${isUpdated}"></span>
+				<table border=1>
+					<thead><tr><th>コード</th><th>名称</th><th>単価</th><th></th></tr></thead>
+					<tbody>
+						<tr th:each="jewelry : ${jewelries}"  th:object="${jewelry}">
+						    <td th:text="*{cd}"></td>
+						    <td th:text="*{name}"></td>
+						    <td th:text="${jewelry.commaOf1000() + '円'}"></td>
+							<td>
+								<a class="btn btn-outline-warning btn-sm" th:href="@{'/jewelry/edit/' + *{cd}}">変更</a>
+								<form method="post" th:action="@{/jewelry/delete}" class="block_right">
+									<button class="btn btn-outline-danger btn-sm delete-action" type="submit">削除</button>
+									<input type="hidden" th:name="cd" th:value="*{cd}">
+									<input type="hidden" th:name="version" th:value="*{version}">
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
