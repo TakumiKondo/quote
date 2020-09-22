@@ -12,12 +12,13 @@
 			<h1>材料費</h1>
 		</div>
 		<div class="page-content">
-			<a class="btn btn-outline-primary btn-sm" th:href="@{/material/add}">新規追加</a>
+			<a class="btn btn-outline-primary btn-sm" th:href="@{/material/add}">新規追加</a><br>
+			<span class="text-danger" th:if="${isUpdated}" th:text="${isUpdated}"></span>
 			<div th:if="${materials.isEmpty()}">
 			    <p>登録された材料費はありません。</p>
 			</div>
 			<div>
-				<span class="text-danger" th:if="${isUpdated}" th:text="${isUpdated}"></span>
+			<div th:unless="${materials.isEmpty()}">
 				<table border=1>
 					<thead><tr><th>材料コード</th><th>名称</th><th>単価</th><th></th></tr></thead>
 					<tbody>
@@ -36,6 +37,7 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>

@@ -19,7 +19,7 @@ public class MaterialController {
 	MaterialService service;
 
     @GetMapping("/material")
-    public String getMaterial(Model model) {
+    public String getList(Model model) {
         model.addAttribute("contents", "material::material_contents");
         model.addAttribute("materials", service.getList());
         return "home/homeLayout";
@@ -27,7 +27,7 @@ public class MaterialController {
 
 
     @GetMapping(value="/material/add")
-    public String getEditAdd(@ModelAttribute MaterialForm materialForm, Model model) {
+    public String getAdd(@ModelAttribute MaterialForm materialForm, Model model) {
         model.addAttribute("contents", "material_add::material_contents");
         model.addAttribute("form", "material_form::material_form");
         model.addAttribute("materialForm", materialForm);
@@ -37,25 +37,13 @@ public class MaterialController {
 
 
     @GetMapping(value="/material/edit/{cd:.+}")
-    public String getEditUpdate(@ModelAttribute MaterialForm materialForm, Model model) {
+    public String getEdit(@ModelAttribute MaterialForm materialForm, Model model) {
     	//TODO 存在しないコードがリクエストされた場合に、403ページを表示する
     	materialForm = service.selectOne(materialForm);
-    	return getEdit(materialForm, model);
+    	return editForm(materialForm, model);
     }
 
-
-    /**
-     * BindingResultを保持するために、Modelが上書きされないよう別のメソッドで編集画面に戻す
-     * @param materialForm
-     * @param model
-     * @return
-     */
-    private String getEditError(@ModelAttribute MaterialForm materialForm, Model model) {
-        return getEdit(materialForm, model);
-    }
-
-
-    private String getEdit(MaterialForm materialForm, Model model) {
+    private String editForm(MaterialForm materialForm, Model model) {
         model.addAttribute("contents", "material_edit::material_contents");
         model.addAttribute("form", "material_form::material_form");
         model.addAttribute("materialForm", materialForm);
@@ -64,26 +52,26 @@ public class MaterialController {
     }
 
 	@PostMapping("/material/create")
-    public String postMaterialCreate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
+    public String postCreate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
 		if(service.existCd(form))
 			error.rejectValue("cd", "", "既に登録済みの材料コードです。");
 		if(error.hasErrors())
-			return getEditAdd(form, model);
+			return getAdd(form, model);
 		service.insert(form);
-        return getMaterial(model);
+        return getList(model);
     }
 
 
 	@PostMapping("/material/update")
     public String postUpdate(@ModelAttribute @Validated MaterialForm form, BindingResult error, Model model) {
 		if(error.hasErrors())
-			return getEditError(form, model);
+			return editForm(form, model);
 
 		try {
 			service.update(form);
 		} catch (ObjectOptimisticLockingFailureException e) {
 			error.rejectValue("cd", "", "既に他のユーザが更新済みです。一覧に戻ってご確認下さい。");
-			return getEditError(form, model);
+			return editForm(form, model);
 		}
         return "redirect:/material";
     }
@@ -96,6 +84,6 @@ public class MaterialController {
 		} catch (ObjectOptimisticLockingFailureException e) {
 			model.addAttribute("isUpdated", "既に他のユーザが更新済みです。");
 		}
-        return getMaterial(model);
+        return getList(model);
     }
 }
